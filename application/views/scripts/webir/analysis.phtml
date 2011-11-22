@@ -1,0 +1,8 @@
+<?php echo $this->partial('partials/subpage-navigation-main.phtml', array('userProcessCount' => $this->userProcessCount, 'active' => 'analysis')); ?>
+
+<h1>Twoje analizy danych</h1>
+<p class="info">Jeżeli analiza ma status <em>Zakończona</em>, możesz obejrzeć jej wynik zaznaczając ją
+w tabeli poniżej i korzystając z przycisku <strong>Zobacz wynik analizy</strong> (ten sam efekt osiągniesz podwójnie klikając w wiersz). Możesz anulować wybraną (jeszcze nie ukończoną) analizę
+korzystając z przycisku <strong>Anuluj analizę</strong>.</p>
+<div id="task-grid"></div>
+<p>Możesz również sortować analizy według nazwy, daty utworzenia oraz statusu klikając na nagłówku odpowiedniej kolumny.</p>

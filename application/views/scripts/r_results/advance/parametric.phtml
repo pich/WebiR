@@ -1,0 +1,32 @@
+<?php $f = new Webir_Filter_ExpToString();?>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Wynik analizy</caption>
+<tr>
+	<td>
+		<?php if($this->resultData->parametric == true):?>Przynajmniej jeden test statystyczny wskzasuje na parametryczność badanej zmiennej.<?php else:?>Testy statystyczne wskazują na brak parametryczności badanej zmiennej.<?php endif;?> <a class="result-show-more" href="#">Dowiedz się więcej...</a>
+	</td>
+</tr>
+</table>
+<div class="result-more">
+<table class="analysis-result">
+	<caption>Tabela testów różnic pomiędzy grupami (test post-hoc Tukey HSD)</caption>
+	<tr>
+		<td>
+			<table cellspacing="0" cellpadding="0" class="analysis-result-lvl2">
+				<tr>
+					<th>test</th>
+					<th>wynik</th>
+					<th>istotność</th>
+				</tr>
+				<?php foreach($this->resultData->statistics as $row):?>
+				<tr>
+					<td class="l"><?php echo $row[0];?></td>
+					<td class="r"><?php printf("%.2f", $f->filter($row[1])); ?></td>
+					<td class="r"><?php printf("%.2f", $f->filter($row[2])); ?></td>
+				</tr>
+				<?php endforeach;?>
+			</table>
+		</td>
+	</tr>
+</table>
+</div>

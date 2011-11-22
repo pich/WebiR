@@ -1,0 +1,4 @@
+analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>[analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?> == '<?php echo $this->function->getParam('level');?>'] <- NA
+analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?> <- factor(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>)
+save(analysis_data, file="../../datasets/<?php echo $this->function->getDataSet()->filename;?>")
+write.csv2("TRUE",file="result.csv")

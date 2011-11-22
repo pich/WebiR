@@ -1,0 +1,39 @@
+<?php 
+	echo $this->partial('r_results' . DS . 'advance' . DS . 'chi2.phtml', 		
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables)
+	);
+?>
+
+<?php echo $this->partial('r_results/basic/chart.phtml',
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables));?>
+<?php if(false == true):?>
+<h2>Test c2</h2>
+<p>Test c2 (Chi2, χ²) służy do sprawdzania, czy rozkład odpowiedzi jest równomierny. Co to oznacza w praktyce? Załóżmy, że interesuje nas, czy osoby, które się uczą są bardziej chętne by podjąć pracę, niż osoby, które się nie uczą. Powiedzmy, że przypuszczamy, iż osoby, które się uczą będą bardziej skłonne podjąć pracę.  W naszej bazie mamy dane od 20409 respondentów. Wśród nich będą tacy, którzy się uczą oraz tacy, którzy się nie uczą. Będą również tacy, którzy wyrażają chęć podjęcia pracy i tacy, którzy nie wyrażają takiej chęci. Jeśli test c2 wskaże losowy rozkład zmiennych – czyli wśród osób uczących się i nie będzie taka sama chęć podjęcia  pracy – nasze przypuszczenie okaże się błędne. Jednak jeśli rozkład ten nie będzie losowy i wśród osób uczących się zaobserwujemy większy odsetek tych gotowych do podjęcia pracy, niż w grupie osób nie uczących się, dowiedziemy prawdziwości naszego przekonania. Rozkład jest nielosowy, zawsze wtedy, gdy wartość p jest mniejsza od 0,05. Mówimy wtedy, że wynik testu jest istotny statystycznie.</p>
+<p>Wraz z testem c2 otrzymujemy zbiór tabel.</p>
+<p>Pierwsza z nich przedstawia liczebności obserwowane – jest to faktyczna liczba respondentów udzielających danej odpowiedzi.</p>
+<p>
+Tabela druga dostarcza nam dokładnie tej samej wiedzy, jednak przedstawionej za pomocą rozkładu procentowego – wiemy ilu z pośród respondentów 
+należy do danej grupy.
+</p>
+<p>
+Tabela trzecia przedstawia procentowy rozkład zmiennej w wierszu. Jeśli w wierszu umieszczona była zmienna zawierająca dane o tym, 
+czy respondent się uczy, to jest to tabela, która nas interesuje. Widzimy, że wartości w każdym wierszu sumują się do 100%. 
+Możemy zatem odczytać jaki procent osób uczących się zamierza podjąć pracę (w tym przykładzie jest to 30,19%) oraz jaki procent osób 
+nie uczących się zgłasza taka chęć (26,22%). To pozwala przypuszczać, mieliśmy dobrą intuicję.
+</p>
+<p>Tabela czwarta przedstawia analogiczne zestawienie dla zmiennej w kolumnie.</p>
+<p>
+Tabela piąta pokazuje nam liczebności oczekiwane. Są to wartości, które powinniśmy uzyskać, jeśli rozkład zmiennych byłby losowy – 
+czyli w sytuacji, gdyby nie istniał między nimi żaden związek.
+</p>
+<p>
+Tabela ostatnia to reszty – są to współczynniki pokazujące w których komórkach (oraz jak bardzo) wartości oczekiwane różnią się od 
+faktycznie uzyskanych. To pozwala nam zinterpretować uzyskane różnice. W naszym przykładzie widzimy, że wśród osób uczących się mamy mniej takich, 
+które nie chcą podjąć pracy oraz więcej tych, które chcę, w porównaniu do rozkładu losowego oczywiście. Z osobami nie uczącymi się sytuacja jest 
+dokładnie odwrotna.
+</p>
+<p>
+Na samym dole znajdziesz miarę Phi/V-Cramera. Informuje ona o sile związku między zmiennymi. 
+Im wyższa wartość, tym silniejszy jest badany związek.
+</p>
+<?php endif;?>

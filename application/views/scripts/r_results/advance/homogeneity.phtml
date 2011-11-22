@@ -1,0 +1,11 @@
+<?php 
+	$var = $this->variables[0]['type'] == App_R_DataSet_Column::TYPE_FACTOR ? $this->variables[0] : $this->variables[1];
+?>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Wynik analizy</caption>
+<tr>
+	<td>
+		Wariancja w grupach wydzielonych ze względu na zmienną <em><?php echo $var['label'];?></em> <b><?php if($this->resultData->homegeneity == false):?>nie<?php endif;?> jest</b> jednorodna.
+	</td>
+</tr>
+</table>

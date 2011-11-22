@@ -1,0 +1,22 @@
+msgLog <- file("message.log", "w")
+sink(file=msgLog,type="message")
+<?php if($this->function->getDataSet()->format == App_R_DataSet::FORMAT_CSV): // dane CSV ?>
+<?php
+// konfiguracja czytaczki
+$arParams = array();
+$f = new Zend_Filter_Word_UnderscoreToSeparator('.');
+foreach($this->function->getDataSet()->reader_params as $key=>$value):
+if($key == 'header') {
+	$arParams[] = 'header='.$value;
+	continue;
+}
+$arParams[] = $f->filter($key).'='.'"'.$value.'"';
+endforeach;?>
+analysis_data <- read.csv("../../datasets/<?php echo $this->function->getDataSet()->filename?>"<?php if(count($arParams) > 0):?>,<?php echo implode(',',$arParams)?><?php endif;?>)
+<?php elseif($this->function->getDataSet()->format == App_R_DataSet::FORMAT_RDATA): // dane rData?>
+load('../../datasets/<?php echo $this->function->getDataSet()->filename?>')
+analysis_data <- <?php echo $this->function->getDataSet()->reader_params->dfName;?> 
+<?php endif;?>
+<?php foreach($this->function->getSubsets() as $level):?>
+analysis_data <- subset(analysis_data,<?php echo $level->column->index;?>=="<?php echo $level->value;?>")
+<?php endforeach;?>

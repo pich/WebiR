@@ -1,0 +1,3 @@
+an.var(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>, analysis_data$<?php echo $this->function->getVariables()->get(1)->index;?>,<?php echo $this->function->getParam('post-hoc') ? 'TRUE' : 'FALSE';?>)
+srednie <- licz.srednie(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>, analysis_data$<?php echo $this->function->getVariables()->get(1)->index;?>)
+write.csv2(srednie, file='srednie.csv')

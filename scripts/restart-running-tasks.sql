@@ -1,0 +1,1 @@
+UPDATE r_task SET status_id=1 WHERE status_id=2;

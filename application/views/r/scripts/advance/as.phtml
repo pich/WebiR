@@ -1,0 +1,3 @@
+analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?> <- as.<?php echo $this->function->getParam('type');?>(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>)
+save(analysis_data, file="../../datasets/<?php echo $this->function->getDataSet()->filename;?>")
+write.csv2("TRUE",file="result.csv")

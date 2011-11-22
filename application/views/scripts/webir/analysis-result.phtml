@@ -1,0 +1,129 @@
+<?php echo $this->partial('partials/subpage-navigation-main.phtml', array('userProcessCount' => $this->userProcessCount, 'active' => 'analysis')); ?>
+<h1><a href="<?php echo $this->url(array(),'analysis'); ?>">Twoje analizy danych</a> &#187; <?php echo $this->analysis_name;?>:</h1>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Analizowany zbiór danych</caption>
+<tr>
+	<td><?php echo $this->taskInfo->data_set['name'];?></td>
+</tr>
+</table>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Analizowane zmienne</caption>
+<tr class="col<?php echo count($this->variables); ?>">
+	<th class="name"><b>Typ:</b></th>
+	<?php foreach($this->variables as $variable): ?>
+	<td>
+	<?php
+		$i18nVariable = '';
+		$variableUrl = '';
+		switch (true) {
+			case ($variable['type'] == 'factor' && $variable['is_ordered'] == true):
+				$i18nVariableType = 'uporządkowany faktor';
+				$variableUrl = 'http://pl.wikipedia.org/wiki/Czynnik_(analiza_czynnikowa)';
+			break;
+			case ($variable['type'] == 'factor'):
+				$i18nVariableType = 'faktor';
+				$variableUrl = 'http://pl.wikipedia.org/wiki/Czynnik_(analiza_czynnikowa)';
+			break;
+			case ($variable['type'] == 'integer'):
+				$i18nVariableType = 'liczba całkowita';
+				$variableUrl = 'http://pl.wikipedia.org/wiki/Liczba_ca%C5%82kowita';
+				break;
+			case ($variable['type'] == 'numeric'):
+				$i18nVariableType = 'liczba rzeczywista';
+				$variableUrl = 'http://pl.wikipedia.org/wiki/Liczby_rzeczywiste';
+				break;
+			case ($variable['type'] == 'logical'):
+				$i18nVariableType = 'wartość logiczna';
+				$variableUrl = 'http://pl.wikipedia.org/wiki/Warto%C5%9B%C4%87_logiczna';
+				break;
+		}
+
+		echo ($variableUrl !== '' ? '<a class="external" rel="nofollow" href="'.$variableUrl.'">' . $i18nVariableType . '</a>' : $i18nVariableType );
+		?>
+	</td>
+	<?php endforeach;?>
+</tr>
+<tr class="col<?php echo count($this->variables); ?>">
+	<th class="name"><b>Nazwa:</b></th>
+	<?php foreach($this->variables as $variable): ?>
+	<td><?php echo $variable['label']; ?></td>
+	<?php endforeach;?>
+</tr>
+<?php if (isset($this->variables[0]['description'])): ?>
+<tr class="col<?php echo count($this->variables); ?>">
+	<th class="name"><b>Opis:</b></th>
+	<?php foreach($this->variables as $variable): ?>
+	<td class="j"><?php echo $variable['description']; ?></td>
+	<?php endforeach;?>
+</tr>
+<?php endif?>
+</table>
+
+<?php if(count($this->subsets) > 0):?>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+	<caption>Zawężanie obszaru analizy</caption>
+	<tr class="col1">
+		<th class="name"><b>Zmienna:</b></th>
+		<td><?php echo $this->subsets[0]['var']['label'];?></td>
+	</tr>
+	<tr class="col1">
+		<th class="name"><b>Wartość:</b></th>
+		<td><?php echo $this->subsets[0]['level']['value'];?></td>
+	</tr>
+</table>
+<?php endif;?>
+
+<?php if(!empty($this->resultData->errors)):?>
+
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Nie udało się przeprowadzić analizy</caption>
+<tr class="col1">
+<td>
+	<p class="j">
+		Analiza, którą próbowałeś/-aś wykonać, nie powiodła się. Prawdopodobnie nie ma respondentów, którzy odpowiedzieli na oba pytania jednocześnie.
+	</p>
+	<p class="j">
+		Spróbuj stworzyć nową analizę z innym zestawem danych.
+	</p>
+<?php
+			/*
+			Najprawdopodobniej oznacza to błąd w programie, dlatego
+			koniecznie <a href="<?php echo $this->url(array(), 'contact'); ?>">zgłoś go do nas</a>! Możesz też spróbować nam pomóc: webiR jest <a href="<?php echo $this->url(array(), 'open-source'); ?>">Otwartym Oprogramowaniem</a>,
+			co oznacza, że w każdej chwili masz możliwość zacząć ulepszać go razem z nami. :-)</p>
+			*/
+			/*
+				<ol class="l">
+					<?php foreach($this->resultData->errors as $error):?>
+					<li><?php echo $error;?></li>
+					<?php endforeach;?>
+				</ol>
+			*/
+?>
+</td>
+</tr>
+</table>
+<?php else:?>
+<?php
+	echo $this->partial('r_results' . DS . $this->taskInfo->resultScript,
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables)
+	);
+?>
+<?php endif;?>
+<?php if($this->style != 'print'):?>
+<p class="fr"><a href="<?php echo $this->url(array('style'=>'print'),'analysis-result');?>"><img class="in va-m" src="<?php echo $this->baseUrl('/img/fam/printer.png');?>" alt="Wersja do druku" />&#160;Wersja do druku</a></p>
+<?php if ($this->user->isAdmin() && (!empty($this->resultData->output) || !empty($this->resultData->messages))): ?>
+<div class="fl" style="width:820px">
+<p><a href="#" id="debug-raw-show">Zobacz surowe wyjście R</a></p>
+<div id="debug-raw" class="dn">
+<?php if(!empty($this->resultData->output)):?>
+<h3>Wyjście linii komend z aplikacji R</h3>
+<pre><?php echo $this->resultData->output;?></pre>
+<?php endif;?>
+<?php if(!empty($this->resultData->messages)):?>
+<h3>Przechwycone wiadomości R</h3>
+<pre><?php echo $this->resultData->messages;?></pre>
+<?php endif;?>
+</div>
+</div>
+<?php endif;?>
+<?php endif;?>

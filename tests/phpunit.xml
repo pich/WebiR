@@ -1,0 +1,8 @@
+<phpunit bootstrap="./TestHelper.php">
+    <testsuite name="Webir Library">
+        <directory>./library/</directory>
+    </testsuite>
+    <testsuite name="Webir">
+        <directory>./application/</directory>
+    </testsuite>
+</phpunit>

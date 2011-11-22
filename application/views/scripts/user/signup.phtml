@@ -1,0 +1,54 @@
+<h1>Rejestracja</h1>
+<?php if(!isset($this->result) || $this->result->getCode() <= Webir_Registration_Result::FAILURE):?>
+<p>Aby móc skorzystać z aplikacji webiR, należy utworzyć konto za pomocą poniższego formularza. Wszystkie pola poniżej są obowiązkowe.</p>
+<div class="clearflow">
+	<form action="<?php echo $this->url(array(),'signup'); ?>" method="post">
+	<fieldset class="signup">
+	<legend>Tworzenie nowego konta</legend>
+		<p class="clearflow">
+			<label for="SignupEmail">E-mail:</label>
+			<input id="SignupEmail" name="email" type="text" value="<?php echo $this->values['email'];?>" maxlength="48" />
+			<?php if(isset($this->result) && $this->result->getCode() == Webir_Registration_Result::FAILURE_IDENTITY_INVALID):?>
+			<label class="error" for="SignupEmail">Proszę wprowadzić poprawny adres e-mail.</label>
+			<?php elseif(isset($this->result) && $this->result->getCode() == Webir_Registration_Result::FAILURE_IDENTITY_IN_USE):?>
+			<label class="error" for="SignupEmail">Konto korzystające z takiego adresu e-mail już istnieje.</label>
+			<?php endif;?>
+		</p>
+		<p class="clearflow">
+			<label for="SignupPassword">Hasło:</label>
+			<input id="SignupPassword" name="password" type="password" value="<?php echo $this->values['password'];?>" />
+			<?php if(isset($this->result) && $this->result->getCode() == Webir_Registration_Result::FAILURE_CREDENTIAL_INVALID):?>
+			<label class="error" for="SignupPassword">Hasło musi mieć długość minimum 6 znaków.</label>
+			<?php else: ?>
+			<label for="SignupPassword">(min. 6 znaków, dowolnych)</label>
+			<?php endif;?>
+		</p>
+		<p class="clearflow">
+			<label for="SignupPasswordConfirm">Powtórz hasło:</label>
+			<input id="SignupPasswordConfirm" name="password-confirm" type="password"  value="<?php echo $this->values['password-confirm'];?>" />
+			<?php if(isset($this->result) && $this->result->getCode() == Webir_Registration_Result::FAILURE_CREDENTIAL_CONFIRM_FAILS):?>
+			<label class="error">Podane hasła nie są identyczne.</label>
+			<?php endif;?>
+		</p>
+		<?php if ($this->recaptcha !== false): ?>
+		<div class="clearflow">
+			<label for="recaptcha_widget_div">Przepisz kod:</label>
+			<?php echo $this->recaptcha->getHTML();?>
+			<?php if (isset($this->result) && $this->result->getCode() == Webir_Registration_Result::FAILURE_RECAPTCHA_FAILS):?>
+			<label class="error">Wprowadzono niepoprawny kod.</label>
+			<?php endif;?>
+		</div>
+		<?php endif ?>
+		<p class="clearflow">
+			<label for="SignupSubmit">&#160;</label>
+			<input id="SignupSubmit" type="submit" value="Utwórz nowe konto" />
+		</p>
+	</fieldset>
+	</form>
+	<p>Jeżeli masz problem z utworzeniem konta, <a href="<?php echo $this->url(array(), 'contact'); ?>">skontaktuj się z nami</a>. Pomożemy!</p>
+</div>
+<?php elseif($this->result->getCode() == 1):?>
+	<p>Rejestracja przebiegła pomyślnie. Możesz korzystać już ze swojego konta.</p>
+<?php elseif($this->result->getCode() == Webir_Registration_Result::ACTIVATION_NEED):?>
+	<p>Rejestracja przebiegła pomyślnie. Sprawdź skrzynkę e-mail i aktywuj swoje konto w serwisie WebiR.</p>
+<?php endif;?>

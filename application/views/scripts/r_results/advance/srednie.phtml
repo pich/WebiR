@@ -1,0 +1,21 @@
+<?php $f = new Webir_Filter_ExpToString(); // filtr zamieniający zapis wykładniczy na stringa (dla bc)?>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Wynik analizy</caption>
+<tr class="col1">
+<td>
+	<table cellspacing="0" cellpadding="0" class="analysis-result-lvl2">
+		<tr>
+			<th class="c">Poziom</th>
+			<th class="c">Średnia</th>
+		</tr>
+		<?php $v = new Zend_Validate_Alpha();?>
+		<?php foreach($this->resultData->srednie as $key=>$row):?>
+		<tr>
+			<td><?php echo $row[0];?></td>
+			<td><?php echo $v->isValid($row[1]) ? $row[1] : round($f->filter($row[1]),2);?></td>
+		</tr>
+		<?php endforeach;?>
+	</table>
+</td>
+</tr>
+</table>

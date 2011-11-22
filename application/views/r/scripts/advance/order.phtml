@@ -1,0 +1,3 @@
+analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?> <- factor(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>, levels=c('<?php echo implode("','",$this->function->getParam('levels'));?>'), ordered=<?php echo $this->function->getParam('ordered') ? 'TRUE' : 'FALSE';?>)
+save(analysis_data, file="../../datasets/<?php echo $this->function->getDataSet()->filename;?>")
+write.csv2("TRUE",file="result.csv")

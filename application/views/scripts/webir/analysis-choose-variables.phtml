@@ -1,0 +1,48 @@
+<?php echo $this->partial('partials/subpage-navigation-main.phtml', array('userProcessCount' => $this->userProcessCount, 'active' => 'analysis-new')); ?>
+<?php echo $this->partial('partials/subpage-analysis-steps.phtml', array('step' => 3)); ?>
+
+<h1>Wybór zmiennych do analizy</h1>
+<h3>Zestaw danych: <?php echo $this->data_set->name;?></h3>
+<div class="analysis-grid-container-main clearflow">
+	<div class="analysis-grid-container fl">
+		<h2>Krok 1 z 3</h2>
+		<p>Aby stworzyć nową analizę, wskaż w tabeli poniżej interesujące cię zmienne, a następnie użyj przycisku <strong>Dodaj do analizy</strong>.</p>
+		<p>Możesz wybrać maksymalnie dwie zmienne.</p>
+		<div id="SourceGrid"></div>
+		<div id="variableInfo">
+		<p class="dn"><span class="b">Segment:</span> <span id="variableSegment">&#160;</span></p>
+		<p class="dn"><span class="b">Zmienna:</span> <span id="variableLabel">&#160;</span></p>
+		<p class="dn"><span class="b">Opis:</span> <span id="variableDescription">&#160;</span></p>
+		</div>
+	</div>
+
+	<div class="analysis-grid-container fr">
+		<h2>Krok 2 z 3</h2>
+		<p>Poniżej znajdują się wybrane przez Ciebie zmienne. Jeśli chcesz zmienić swój wybór, wskaż jedną z nich poniżej i użyj przycisku <strong>Usuń z analizy</strong>.</p>
+		<p>Wymagana jest co najmniej jedna zmienna do analizy.</p>
+		<div id="DestinationGrid"></div>
+	</div>
+
+	<div class="analysis-grid-container fr">
+		<h2>Krok 3 z 3</h2>
+		<p>Opcjonalnie, możesz zawęzić obszar analizy do konkretnej wartości pewnej zmiennej. Na przykład: Nazwa województwa &#187; mazowieckie.</p>
+		<div id="SubsetForm"></div>
+	</div>
+</div>
+
+<form action="<?php echo $this->url(array(), 'analysis-begin'); ?>" method="post">
+	<p class="clearflow">
+		<span class="bl fr">
+			<label class="fl standard" for="AnalysisName">Nazwij swoją analizę:</label>
+			<input class="fl standard" id="AnalysisName" name="name" type="text" value="" />
+			<input class="fl bluebutton" type="submit" value="Rozpocznij analizę" id="analysisBegin" disabled="disabled" />
+		</span>	
+	</p>
+</form>
+<p>
+Jeśli masz problem ze znalezieniem zmiennej na liście,
+skorzystaj z możliwości sortowania. Wystarczy, że klikniesz na nagłówek odpowiedniej
+kolumny (<strong>Nazwa zmiennej</strong> bądź <strong>Typ</strong>). Możesz też skorzystać z wyszukiwarki;
+wystarczy, że wpiszesz w pole <strong>Szukaj</strong> nazwę lub fragment nazwy szukanej zmiennej.
+</p>
+<p>Wskazówka: dodawać i usuwać zmienne możesz również poprzez dwukrotne kliknięcie na wierszu tabeli.</p>

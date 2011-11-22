@@ -1,0 +1,24 @@
+<?php if(isset($this->resultData->charts)): ?>
+<?php if(count($this->resultData->charts) > 0):?>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Wykresy</caption>
+<?php foreach($this->resultData->charts as $key=>$chart):?>
+<tr>
+	<td class="chart-container">
+		<div class="clearflow chart-container">
+			<img class="chart" height="432" src="<?php echo $this->url(array('filename' => $chart['file'], 'task_id' => $this->analysis_id), 'get-chart'); ?>" alt="Wykres" />
+			<?php if(!empty($chart['legend'])):?>
+			<?php foreach($chart['legend'] as $key=>$arLegend):?>
+			<?php if(!empty($arLegend)):?>
+			<p class="l"><b><?php echo $this->variables[$key]['label'];?>:</b></p>
+			<p class="l"><?php echo implode(', ',$arLegend);?></p>
+			<?php endif;?>
+			<?php endforeach;?>
+			<?php endif;?>
+		</div>
+	</td>
+</tr>
+<?php endforeach;?>
+</table>
+<?php endif;?>
+<?php endif;?>

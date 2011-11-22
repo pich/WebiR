@@ -1,0 +1,9 @@
+<?php $info = $this->function->getInfo();?>
+one_variable(analysis_data$<?php echo $info->variables[0]['index'];?>)
+# wykresy
+<?php if($info->variables[0]['type'] == 'factor'):?>
+slupkowy(analysis_data$<?php echo $info->variables[0]['index'];?>,etx="<?php echo $info->variables[0]['label'];?>", nazwa="wykres-slupkowy_<?php echo $info->variables[0]['index'];?>.png")
+kolowy(analysis_data$<?php echo $info->variables[0]['index'];?>,tytul="<?php echo $info->variables[0]['label'];?>", nazwa="wykres-kolowy_<?php echo $info->variables[0]['index'];?>.png")
+<?php else:?>
+histogram(analysis_data$<?php echo $info->variables[0]['index'];?>,etx="<?php echo $info->variables[0]['label'];?>", nazwa="wykres-histogram_<?php echo $info->variables[0]['index'];?>.png")
+<?php endif;?>

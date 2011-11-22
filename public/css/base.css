@@ -1,0 +1,55 @@
+body {
+	font-size: 13px;
+	margin: 0px;
+	padding: 0px; 
+}
+
+body, input, textarea, select, option, optgroup, button {
+	font-family: Lucida Grande, Lucida Sans Unicode, Arial, Helvetica, sans-serif;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a img {
+	border: 0px;
+}
+
+strong {
+	font-weight: bolder;
+}
+
+.l { text-align: left !important; }
+.r { text-align: right !important;}
+.j { text-align: justify !important; }
+.c { text-align: center !important; }
+.b { font-weight: bold; }
+.fl { float: left; }
+.fr { float: right; }
+.in { display: inline; }
+.bl { display: block; }
+.dn { display: none; }
+.oa { overflow: auto; }
+.oh { overflow: hidden; }
+.ov { overflow: visible; }
+.abs { position: absolute; }
+.rel { position: relative; }
+.va-m { vertical-align: middle; }
+.center { margin-left: auto !important; margin-right: auto !important; }
+.tdu { text-decoration: underline; }
+
+.clear:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearflow {
+	overflow: hidden;
+	word-wrap: break-word;
+	zoom: 1;
+}

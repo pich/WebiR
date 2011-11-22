@@ -1,0 +1,49 @@
+<a href="<?php echo $this->baseUrl('tour') ?>" id="NavExamples"><img src="<?php echo $this->baseUrl('img/index-computer.png') ?>" alt="Zobacz przykłady statystyk" /></a>
+
+<div class="sign-menu round">
+	<form action="<?php echo $this->url(array(),'signin'); ?>" method="post">
+		<h3>Masz już konto? Zaloguj się!</h3>
+		<div class="wrap clearflow">
+			<p>
+				<label for="SigninEmail">E-mail:</label>
+				<input id="SigninEmail" name="email" type="text" value="<?php echo $this->values['email']?>" /> 
+			</p>
+			<p>
+				<label for="SigninPassword">Hasło:</label>
+				<input id="SigninPassword" name="password" type="password" value="<?php echo $this->values['password']?>" /> 
+			</p>
+		</div>
+		<?php if(isset($this->result) && $this->result->getCode() <= App_Auth_Result::FAILURE):?>
+			<?php switch($this->result->getCode()) {
+				case App_Auth_Result::FAILURE_IDENTITY_NOT_FOUND: $msg = 'Nie znaleziono konta o takim adresie e-mail.'; break;
+				case App_Auth_Result::FAILURE_IDENTITY_AMBIGUOUS: $msg = 'Adres e-mail jest niejednoznaczny, <a href="' . $this->url(array(), 'contact') . '">skontaktuj się z nami</a>!'; break;
+				case App_Auth_Result::FAILURE_CREDENTIAL_INVALID: $msg = 'Podane hasło jest nieprawidłowe.'; break;
+				case App_Auth_Result::FAILURE_ACCOUNT_DISABLED: $msg = 'Twoje konto zostało zablokowane, <a href="' . $this->url(array(), 'contact') . '">skontaktuj się z nami</a>.'; break;
+				case App_Auth_Result::FAILURE_ACCOUNT_EXPIRES: $msg = 'Twoje konto straciło ważność, <a href="' . $this->url(array(), 'contact') . '">skontaktuj się z nami</a>.'; break;
+				case App_Auth_Result::FAILURE_ACCOUNT_ACTIVATION: $msg = 'Twoje konto nie zostało jeszcze aktywowane. Sprawdź skrzynkę e-mail (w tym folder <em>SPAM</em>).'; break;
+				default:
+					$msg = 'Wystąpił nieznany błąd, <a href="' . $this->url(array(), 'contact') . '">skontaktuj się z nami</a>!';
+			}?>
+		<p class="error"><?php echo $msg?></p>
+		<?php endif;?>
+		<p class="wrap-2 clearflow">
+			<span class="bl fl">
+				<input id="SigninPersistent" name="persistent" type="checkbox" value="1" /> 
+				<label for="SigninPersistent">Zapamiętaj mnie</label>
+			</span>
+			<input class="fr" type="submit" value="Zaloguj się" />
+		</p>
+	</form>
+</div>
+
+<div class="sign-menu round">
+	<h4>Zarejestruj się za darmo</h4>
+	<p>Założenie konta jest bezpłatne i zajmie mniej niż minutę.</p>
+	<form action="<?php echo $this->url(array(),'signup'); ?>" method="get">
+		<p class="wrap-2 clearflow">
+			<input class="fr register" type="submit" value="Załóż konto" />
+		</p>
+	</form>
+</div>
+
+ 

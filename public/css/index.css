@@ -1,0 +1,85 @@
+#Main {
+	padding: 16px;
+	padding-right: 0;
+	width: 964px;
+	min-height: 350px;
+}	
+
+#NavExamples {
+	float: right;
+	margin-top: 16px;
+}
+
+.sign-menu h3 {
+	font-size: 1.75em;
+	color: #468;
+}
+.sign-menu h4 {
+	font-size: 1.4em;
+	color: #468;
+}
+.sign-menu p {
+	margin: 0.5em 0;
+}
+.sign-menu .wrap p {
+	width: 180px;
+	float: left;
+}
+
+.sign-menu {
+	border: 1px solid #888;
+	margin-bottom: 16px;
+	width: 408px;
+	padding: 16px;
+	background-color: #fff;
+	-moz-box-shadow: 3px 3px 16px #468;
+	-webkit-box-shadow: 3px 3px 16px #468;
+}
+
+.sign-menu input[type="text"], .sign-menu input[type="password"] {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-box-shadow: inset 1px 1px 4px #ccc;
+	-webkit-box-shadow: inset 1px 1px 4px #ccc;
+	border-radius: 4px 4px 4px 4px;
+	border: 1px solid #888;
+	display: block;
+	font-size: 13px;
+	padding: 5px;
+	width: 160px;
+}
+
+.sign-menu input[type="text"]:focus, .sign-menu input[type="password"]:focus {
+	background-color: #fffbcc;
+}
+
+.sign-menu input[type="submit"] {
+	display: block;
+	-moz-border-radius:4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	font-size:14px;
+	font-weight:normal;
+	margin:0;
+	padding:4px 10px 5px;
+	cursor: pointer;
+	background:url("../img/button-background-blue.png") repeat-x scroll 0 0 #3399DD;
+	border:1px solid #468;
+	color:#eef;
+	text-shadow:1px 1px 0 #17b;
+}
+
+.sign-menu input[type="submit"].register {
+	background:url("../img/button-background-green.png") repeat-x scroll 0 0 #33DD99;
+	border:1px solid #284;
+	text-shadow:1px 1px 0 #183;
+	color:#fff;
+}
+
+.sign-menu .wrap-2 span {
+	padding:5px 0px 6px;
+}
+
+.error {
+	color: #f00;
+}

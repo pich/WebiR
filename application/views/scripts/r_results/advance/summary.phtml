@@ -1,0 +1,39 @@
+<?php if($this->variables[0]['type']===App_R_DataSet_Column::TYPE_FACTOR):?>
+<?php if(isset($this->resultData->statistics)):?>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+	<caption>Wynik analizy</caption>
+	<tr class="col3">
+			<th>&#160;</th>
+			<th>Liczebność</th>
+			<th>Procentowy udział</th>
+	</tr>
+<?php foreach($this->resultData->statistics as $row):?>
+	<tr>
+		<th class="l"><?php echo $row[0];?></th>
+		<td class="r"><?php echo $row[1];?></td>
+		<td class="r"><?php echo round($row[2],2);?></td>
+	</tr>
+<?php endforeach;?>
+</table>
+<?php endif;?>
+<?php else:?>
+<?php if(isset($this->resultData->statistics)):?>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Wynik analizy</caption>
+	<tr class="col7-equal">
+		<th><a href="#wartosci-skrajne"><img class="in" src="<?php echo $this->baseUrl('img/fam/help.png') ?>" alt="Pomoc" /></a><br/>Minimum</th>
+		<th><a href="#kwartyle"><img class="in" src="<?php echo $this->baseUrl('img/fam/help.png') ?>" alt="Pomoc" /></a><br/>25% obserwacji ma wyniki mniejsze niż</th>
+		<th><a href="#mediana"><img class="in" src="<?php echo $this->baseUrl('img/fam/help.png') ?>" alt="Pomoc" /></a><br/>Wartość środkowa (mediana)</th>
+		<th>Średnia</th>
+		<th><a href="#kwartyle"><img class="in" src="<?php echo $this->baseUrl('img/fam/help.png') ?>" alt="Pomoc" /></a><br/>25% obserwacji ma wyniki wyższe niż</th>
+		<th><a href="#wartosci-skrajne"><img class="in" src="<?php echo $this->baseUrl('img/fam/help.png') ?>" alt="Co to jest?" /></a><br/>Maksimum</th>
+		<th>Liczba obserwacji</th>
+	</tr>
+	<tr>
+	<?php foreach($this->resultData->statistics as $val):?>
+		<td><?php echo round($val[1],2);?></td>
+	<?php endforeach;?>
+	</tr>
+</table>
+<?php endif;?>
+<?php endif;?>

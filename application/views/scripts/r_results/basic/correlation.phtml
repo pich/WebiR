@@ -1,0 +1,27 @@
+
+ <?php
+	echo $this->partial('r_results' .DS. 'advance' .DS. 'correlation.phtml',
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables)
+	);
+?>
+
+<?php echo $this->partial('r_results/basic/chart.phtml',
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables));?>
+
+<h2>Korelacja</h2>
+<p class="info">Korelacja jest miarą związku liniowego. Oznacza to, iż pozwala nam stwierdzić jaka jest współzmienność dwóch analizowanych czynników. Załóżmy, że interesuje na, czy zamożność jest jakoś powiązana z poczuciem zadowolenia z życia. Analizując korelację tych 2 zmiennych możemy co nieco powiedzieć na ten temat. Wynik testu korelacji pozwala nam stwierdzić 3 rzeczy:</p>
+<ul>
+<li>czy jest ona istotna statystycznie (gdy wartość p jest mniejsza od 0,05)</li>
+<li>jaka jest siła związku:
+	<ul>
+		<li>Współczynnik korelacji od 0 do 0,3 – to brak związku lub związek bardzo słaby</li>
+		<li>Współczynnik korelacji od 0,3 do 0,5 – to korelacja o umiarkowanej sile</li>
+		<li>Współczynnik korelacji od 0,5 do 0,7 – to silny związek między zmiennymi</li>
+		<li>Współczynnik korelacji od 0,7 do 1 – to związek bardzo silny</li>
+	</ul>
+Analizując siłę zwitku nie patrzymy na znak (+ lub -) przed współczynnikiem korelacji.
+</li>
+<li>kierunek związku między zmiennymi (tutaj patrzymy na znak). Korelacja może być dodatnia – w naszym przykładzie oznaczałoby to, iż im wyższa zamożność tym wyższy poziom satysfakcji . Może być również ujemna, co oznacza iż im większy poziom zamożności, tym niższa satysfakcja. W przypadku gdy współczynnik korelacji jest bliski zeru, kierunek jest nieistotny, gdyż nie obserwujemy współzmienności.</li>
+</ul>
+<p>Mając na uwadze powyższe informacje możemy zatem powiedzieć iż wynik r=0,48; p&lt;0,001 oznacza iż istnieje umiarkowana, pozytywna (dodatnia) korelacja między zamożnością a poczuciem zadowolenia z życia. Związek tych zmiennych jest istotny statystycznie (p&lt;0,001).</p>
+<p>Wyróżniamy parametryczne testy korelacji oraz nieparametryczne. Pierwsze z nich obwarowane są pewnymi szczególnymi warunkami, jakie muszą spełnić dane, by test był rzetelny. Najpopularniejszą miarą jest  tutaj r-Pearsona. Grupa druga jest bardziej odporna na niespełnienie określonych warunków. W webiR jest ona reprezentowana przez test Rho Spearmana.</p>

@@ -1,0 +1,5 @@
+korelacja.nieparametryczna(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>, analysis_data$<?php echo $this->function->getVariables()->get(1)->index;?>,TRUE)
+<?php $info = $this->function->getInfo();?>
+poletka(analysis_data$<?php echo $info->variables[0]['index'];?>,analysis_data$<?php echo $info->variables[1]['index'];?>,"<?php echo $info->variables[0]['label'];?>","<?php echo $info->variables[1]['label'];?>")
+tab <- table(analysis_data$<?php echo $info->variables[0]['index'];?>,analysis_data$<?php echo $info->variables[1]['index'];?>)
+slupkowy(tab,etx="<?php echo $info->variables[0]['label'];?>",ety="<?php echo $info->variables[1]['label'];?>", nazwa="wykres-slupkowy.png")

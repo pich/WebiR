@@ -1,0 +1,22 @@
+<h1>WebiR</h1>
+
+<h2>Hello World!</h2>
+
+<div class="info">
+	<p><?php echo $this->output ?></p>
+</div>
+
+<div class="info">
+	<p>Test chińskich krzaczorów:</p>
+	<p>中国歷来重视編修历史，历朝历代都设有史官，因此保存有十分详尽的历史资料，如《二十四史》、《资治通鉴》等。距今约4000多年前，以中原地区为中心开始出现聚落组织进而成国家和朝代，后历经多次演变和朝代更迭，持续时间较长的朝代有商、周、汉、唐、宋、明和清等，各朝各代也出现过太平盛世，如汉朝文景之治和光武中兴、唐朝贞观之治和开元盛世、明朝万历中兴、清朝康乾盛世等，科學研究顯示中國朝代的更替常受氣候與糧食生產量影響，会导致处在战乱或分裂时期。中原王朝历史上不断与北方游牧民族交往、征战，如匈奴、突厥、鲜卑、蒙古和女真（满族）等，其中，魏晋时代曾经有五胡乱华，而蒙古和女真甚至入主中原，改变了中国和世界的历史发展进程，众多民族融入中华民族的大家庭。辛亥革命後，中国的帝王国体于1912年退出历史舞台，取而代之的是共和国体的中华民国与中华人民共和国，中国歷史步入现代。</p>
+</div>
+
+<div class="info">
+	<?php if (is_numeric($this->pid)): ?>
+	<p>Odpaliłem proces o PID: <?php echo $this->pid ?></p>
+	<p>Czy działa w tle proces o tym PID: <?php echo ($this->isAlive === true ? '<span class="green">tak</span>' : '<span class="red">nie</span>') ?></p>
+	<p>Katalog roboczy procesu: <?php echo $this->path ?></p>
+	<?php else: ?>
+	<p>Uruchomienie procesu nie powiodło się i brak wyjątku. Nie wywołano metody run() lub coś jest bardzo nie tak!</p>
+	<?php endif?>
+</div>

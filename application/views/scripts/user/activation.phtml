@@ -1,0 +1,7 @@
+<h1>Aktywacja konta</h1>
+<?php if(isset($this->result) && $this->result->getCode() == 2):?>
+<p>Konto zostało aktywowane! Za chwilę zostaniesz przeniesiony do strony głównej serwisu.</p>
+<p>Jeśli strona się nie otworzyła kliknij <a href="<?php echo $this->url(array(),'welcome');?>">tutaj</a></p>
+<?php else:?>
+<p>Nie znaleziono użytkownika wymagającego aktywacji.</p>
+<?php endif;?>

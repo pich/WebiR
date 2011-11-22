@@ -1,0 +1,15 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $this->lang ?>">
+<head>
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headMeta() ?>
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headStyle() ?>
+</head>
+<body>
+
+<div id="Main" class="container clearflow main print">
+<?php echo $this->layout()->content ?>
+</div>
+</body>
+</html>

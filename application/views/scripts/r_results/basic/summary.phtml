@@ -1,0 +1,46 @@
+<?php 
+	echo $this->partial('r_results' . DS . 'advance' . DS . 'summary.phtml', 		
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables)
+	);
+?>
+
+<?php echo $this->partial('r_results/basic/chart.phtml',
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables));?>
+<?php if($this->variables[0]['type'] == App_R_DataSet_Column::TYPE_FACTOR):?>
+<h2>Pomoc</h2>
+<p class="info">
+Wybierając do analizy jedną zmienną otrzymasz jej statystyki opisowe. Czym są owe statystyki opisowe? 
+Większość z nich znasz już zapewne ze swojego doświadczenia. Na przykład często oglądając w telewizji wyniki różnego rodzaju ankiet usłyszeć możesz, 
+iż Polacy w danym województwie zarabiają średnio 2253,85 PLN brutto. Lub, że 60% rodaków jest zadowolonych ze swojej pensji, 32% nie jest, 
+a 8% nie ma zdania na ten temat. Teraz pewnie nie masz już problemu ze zrozumieniem, czym są statystyki opisowe. 
+Jednak średnia i procentowy rozkład odpowiedzi, to jeszcze nie wszystko. Możemy nasze dane opisać za pomocą kilku innych miar.
+</p>
+<?php elseif($this->variables['0']['type'] == App_R_DataSet_Column::TYPE_INTEGER || $this->variables['0']['type'] == App_R_DataSet_Column::TYPE_NUMERIC):?>
+<h2>Pomoc</h2>
+<h3><a name="wartosci-skrajne"></a>Wartość najmniejsza i największa</h3>
+<p><strong>Minimum</strong> i <strong>maksimum</strong> to wartość najmniejsza i największa w danym zbiorze. 
+Pozwala nam na przykład bardzo szybko stwierdzić ile zarabiał uczestnik badania mający najniższe dochody, a ile ten z najwyższymi.
+</p>
+<h3><a name="mediana"></a>Wartość środkowa</h3>
+<p><strong>Mediana</strong> jest nazywana wartością środkową. Jest to wartość, która rozdziela nam zbiór danych na dwie mniej więcej równe części. 
+Dlaczego mniej więcej – o tym za chwilę. Załóżmy, że wśród naszych 10 osób respondentów było 3 osoby zarabiające po 1200 PLN, 
+2 zarabiające 1500 PLN, 2 zarabiające 1700 PLN, jedna zarabiająca 1900 PLN, 4 zarabiające po 2100 PLN oraz jedna zarabiająca 9000 PLN miesięcznie. 
+Uporządkujmy te wartości od najmniejszej do największej:
+</p>
+<p>1200 1200 1200 1500 1500 1700 1700 1900 2100 2100 2100 2100 9000</p>
+<p>Jest ich w sumie 13 – tyle osób wzięło udział ankiecie. Wartością, która znajduje się dokładnie pośrodku jest 1700. 
+I to jest nasza mediana – dzieli ona zbiór na połowę. Teraz możemy wrócić do podziału na równe części. W powyższym przykładzie mamy 13 elementów. 
+Zatem podział na dokładnie równe zbiory nie jest tutaj możliwy. Przyjmuje się, że mediana stanowi górną granicę pierwszego zbioru. 
+Tak więc podzieli nam ankietowanych na tych, którzy zarabiają od 1200 do 1700 (7 osób) oraz od 1900 do 9000 (6 osób).
+</p>
+<p>
+Po co używać mediany? Mediana jest miarą znacznie bardziej odporną na wyniki skrajne, niż średnia. Analizując powyższe dane otrzymamy średnią 
+wynoszącą 2253,85 PLN. Jest to wartość zdecydowanie wyższa niż mediana wynosząca 1700 PLN. Przyglądając się danym widzimy, że tak naprawdę tylko 
+jedna osoba zarabia ponad 2100 PLN, zawyżając średnią.
+</p>
+<h3><a name="kwartyle"></a>Kwartyle</h3>
+<p>Kwartyle, podobnie jak mediana, dzielą zbiór wyników na równe części – tym razem na cztery (kwarty). 
+Pierwszy kwartyl to wartość odcinająca 25% najniższych wyników, drugi to wartość środkowa – czyli mediana. 
+Natomiast trzeci odcina 25% najwyższych wyników.
+</p>
+<?php endif;?>

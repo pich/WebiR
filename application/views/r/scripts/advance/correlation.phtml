@@ -1,0 +1,5 @@
+<?php if($this->function->getParam('corrType') == 'nonparam'):?>
+korelacja.nieparametryczna(analysis_data$<?php echo $this->function->getVariables()->get(0)->index?>, analysis_data$<?php echo $this->function->getVariables()->get(1)->index?>,forced=TRUE)
+<?php else:?>
+korelacja.parametryczna(analysis_data$<?php echo $this->function->getVariables()->get(0)->index?>, analysis_data$<?php echo $this->function->getVariables()->get(1)->index?>,forced=TRUE)
+<?php endif;?>

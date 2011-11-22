@@ -1,0 +1,157 @@
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Wynik analizy</caption>
+<tr class="col1">
+<td colspan="2">
+
+<?php $f = new Webir_Filter_ExpToString(); // filtr zamieniający zapis wykładniczy na stringa (dla bc)?>
+<?php if(isset($this->resultData->statistics)):?>
+<?php if (bccomp($f->filter($this->resultData->statistics[2][1]), '0.05') <= 0): ?>
+<p>Test statystyczny (χ²) wskazuje na nielosowy rozkład odpowiedzi — prawdopodobny jest związek między zmiennymi. <a class="result-show-more" href="#resultMore">Dowiedz się więcej...</a> </p>
+<?php else:?>
+<p>Test statystyczny (χ²) wskazuje na losowy rozkład zmiennych — brak związku między zmiennymi. <a class="result-show-more" href="#resultMore">Dowiedz się więcej...</a> </p>
+<?php endif;?>
+<?php endif;?>
+</td>
+</tr>
+<?php foreach($this->resultData as $arKey => $arValues):?>
+<?php if (in_array($arKey,array('observed','observed_pct'))): ?>
+<tr class="col2">
+	<?php
+		// Czy zaokrąglać do 2 miejsc po przecinku?
+		$round2 = false;
+		switch ($arKey) {
+			case 'observed': $label = "Tabele<br/>Obserwowane liczebności"; $round2 = false; break;
+			case 'observed_pct': $label = "Tabele<br/>Obserwowane (%)"; $round2 = true; break;
+		}
+	?>
+	<th class="name"><b><?php echo $label; ?>:</b></th>
+	<td>
+		<p class="l">Etykiety wierszy dotyczą zmiennej: <?php echo $this->variables[0]['label']; ?> </p>
+		<p class="l">Etykiety kolumn dotyczą zmiennej: <?php echo $this->variables[1]['label']; ?> </p>
+		<table cellspacing="0" cellpadding="0" class="analysis-result-chi2">
+		<thead>
+			<tr>
+			<?php foreach($this->resultData->{$arKey}[0] as $key => $value): ?>
+				<th><?php echo empty($value) ? '&#160;' : $value;?></th>
+			<?php endforeach;?>
+			</tr>
+		</thead>
+		<tbody>
+		<?php for ($i = 1; $i < count($this->resultData->{$arKey}); $i++): ?>
+			<tr>
+			<?php foreach($this->resultData->{$arKey}[$i] as $value):?>
+				<?php if (is_numeric($value)): ?>
+					<?php $value = ($round2 === true ? round($value, 2) : $value); ?>
+	 				<td class="r">
+	 				<?php if ($arKey == 'residuals'): // kolorujemy tylko tabelę reszt?>
+	 				<?php printf("<span %s>%" . ($round2 === true ? '.2' : '') ."f</span>", ($value < 0 ? 'class="red"' : 'class="green"'), $value); ?>
+	 				<?php if ($value < 0) echo '<br/>za mało'; elseif ($value > 0) echo '<br/>za dużo'; ?>
+	 				<?php else:?>
+	 				<?php echo $value;?>
+	 				<?php endif;?>
+	 				</td>
+				<?php else: ?>
+	 				<th class="l"><?php echo $value; ?></th>
+				<?php endif;?>
+			<?php endforeach;?>
+			</tr>
+		<?php endfor;?>
+		</tbody>
+		</table>
+	</td>
+</tr>
+<?php endif;?>
+<?php endforeach;?>
+</table>
+<a name="resultMore"></a>
+<div class="result-more">
+
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Informacje szczegółowe</caption>
+<tr class="col2">
+	<th class="name"><b>Wykonany test:</b></th>
+	<td><a href="http://pl.wikipedia.org/wiki/Test_zgodno%C5%9Bci_chi-kwadrat" class="external" rel="nofollow">chi-kwadrat (χ²)</a></td>
+</tr>
+<tr class="col2">
+	<th class="name"><b>Zapis APA:</b></th>
+	<?php
+	switch(true) {
+		case bccomp($f->filter($this->resultData->statistics[2][1]),'0.05') == 1: $p = sprintf('= %s',$this->resultData->statistics[2][1]);break;
+		case bccomp($f->filter($this->resultData->statistics[2][1]),'0.01') == 1: $p = '≤ 0.05';break;
+		case bccomp($f->filter($this->resultData->statistics[2][1]),'0.001') == 1: $p = '≤ 0.01';break;
+		default:
+			$p = '≤ 0.001';
+	}
+	?>
+	<td>χ²(<?php echo $this->resultData->statistics[1][1]?>, N=<?php echo $this->resultData->statistics[4][1]?>)=<?php echo round($this->resultData->statistics[0][1], 2)?>, p <?php echo $p;?></td>
+</tr>
+
+<?php foreach($this->resultData as $arKey => $arValues):?>
+<?php if (in_array($arKey,array('observed_pct_c','observed_pct_r', 'expected', 'residuals'))): ?>
+<tr class="col2">
+	<?php
+		// Czy zaokrąglać do 2 miejsc po przecinku?
+		$round2 = false;
+		switch ($arKey) {
+			case 'observed_pct_c': $label = "Tabele<br/>Obserwowane (% kolumna) "; $round2 = true; break;
+			case 'observed_pct_r': $label = "Tabele<br/>Obserwowane (% wiersz)"; $round2 = true; break;
+			case 'expected': $label = "Oczekiwane"; $round2 = true;break;
+			case 'residuals': $label = "Reszty"; $round2 = true;break;
+		}
+	?>
+	<th class="name"><b><?php echo $label; ?>:</b></th>
+	<td>
+		<p class="l">Etykiety wierszy dotyczą zmiennej: <?php echo $this->variables[0]['label']; ?> </p>
+		<p class="l">Etykiety kolumn dotyczą zmiennej: <?php echo $this->variables[1]['label']; ?> </p>
+		<table cellspacing="0" cellpadding="0" class="analysis-result-chi2">
+		<thead>
+			<tr>
+			<?php foreach($this->resultData->{$arKey}[0] as $key => $value): ?>
+				<th><?php echo empty($value) ? '&#160;' : $value;?></th>
+			<?php endforeach;?>
+			</tr>
+		</thead>
+		<tbody>
+		<?php for ($i = 1; $i < count($this->resultData->{$arKey}); $i++): ?>
+			<tr>
+			<?php foreach($this->resultData->{$arKey}[$i] as $value):?>
+				<?php if (is_numeric($value)): ?>
+					<?php $value = ($round2 === true ? round($value, 2) : $value); ?>
+	 				<td class="r">
+	 				<?php if ($arKey == 'residuals'): // kolorujemy tylko tabelę reszt?>
+	 				<?php printf("<span %s>%" . ($round2 === true ? '.2' : '') ."f</span>", ($value < 0 ? 'class="red"' : 'class="green"'), $value); ?>
+	 				<?php if ($value < 0) echo '<br/>za mało'; elseif ($value > 0) echo '<br/>za dużo'; ?>
+	 				<?php else:?>
+	 				<?php echo $value;?>
+	 				<?php endif;?>
+	 				</td>
+				<?php else: ?>
+	 				<th class="l"><?php echo $value; ?></th>
+				<?php endif;?>
+			<?php endforeach;?>
+			</tr>
+		<?php endfor;?>
+		</tbody>
+		</table>
+	</td>
+</tr>
+<?php endif;?>
+<?php endforeach;?>
+
+<?php if (array_key_exists('statistics', $this->resultData)): ?>
+<tr class="col2">
+	<th class="name"><b>Pozostałe:</b></th>
+	<td>
+		<p class="l">Obliczona moc testu χ² (szansa na wykrycie istniejącej zależności): <?php echo bcmul($this->resultData->statistics[7][1],'100');?>%</p>
+		<ol class="l">
+			<li>w = <?php echo sprintf('%.2f',round($this->resultData->statistics[3][1],2))?></li>
+			<li>N = <?php echo round($this->resultData->statistics[4][1],2)?></li>
+			<li>df = <?php echo round($this->resultData->statistics[5][1],2)?></li>
+			<li>p = <?php echo sprintf('%.2f',round($this->resultData->statistics[6][1],2))?></li>
+			<li><?php if(count($this->resultData->observed) > 3 && count($this->resultData->observed[0]) > 3):?>V-Cramera = <?php echo sprintf('%.2f',round($f->filter($this->resultData->statistics[9][1]),2)); ?><?php else:?>Phi = <?php echo sprintf('%.2f',round($f->filter($this->resultData->statistics[8][1]),2));?><?php endif;?></li>
+		</ol>
+	</td>
+</tr>
+<?php endif;?>
+</table>
+</div>

@@ -1,0 +1,10 @@
+<?php $info = $this->function->getInfo();?>
+korelacja(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>, analysis_data$<?php echo $this->function->getVariables()->get(1)->index;?>)
+if(length(levels(as.factor(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>))) <= <?php echo $this->webir_settings['jitter_max_level'];?> || length(levels(as.factor(analysis_data$<?php echo $this->function->getVariables()->get(1)->index;?>))) <= <?php echo $this->webir_settings['jitter_max_level'];?>) {
+	szum=TRUE
+} else {
+	szum=FALSE
+}
+# Wykresy dla 2 zmiennych:
+rozrzutu_lr(analysis_data$<?php echo $this->function->getVariables()->get(0)->index;?>,analysis_data$<?php echo $this->function->getVariables()->get(1)->index;?>,
+						etx="<?php echo $this->function->getVariables()->get(0)->label;?>",ety="<?php echo $this->function->getVariables()->get(1)->label;?>",szumx=szum,szumy=szum,nazwa="wykres-rozrzut.png")

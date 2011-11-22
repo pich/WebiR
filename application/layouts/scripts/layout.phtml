@@ -1,0 +1,42 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $this->lang ?>">
+	<head>
+		<?php echo $this->headTitle() ?>
+		<?php echo $this->headMeta() ?>
+		<?php echo $this->headLink() ?>
+		<?php echo $this->headStyle() ?>
+		<?php echo $this->headScript() ?>
+	</head>
+	<body>
+
+		<div id="Top" class="container clearflow">
+			<ul class="nav">
+				<li><a href="/">strona główna</a></li>
+				<li><a href="/about">o projekcie</a></li>
+				<li><a href="/about-data">o danych</a></li>
+				<li><a href="/open-source">open-source</a></li>
+				<li><a href="/contact">kontakt</a></li>
+			</ul>
+			<h1 class="webir-logo">
+				<a href="/"><img src="/img/webir-logo.png" alt="Logo webiR" />WebiR - strona główna</a>
+			</h1>
+		</div>
+
+		<div id="Main" class="container clearflow main">
+			<?php echo $this->layout()->content ?>
+			<!-- Main -->
+		</div>
+
+		<div id="Footer" class="container">
+			<p class="c clearflow">
+				<span>Copyright &copy;
+					<?php
+					echo ($this->copyright['start'] < $this->copyright['now'] ? $this->copyright['start'] . '-' . $this->copyright['now'] : $this->copyright['start']);
+					?>
+					by <a href="http://www.swps.pl">SWPS</a> &amp; <a href="http://www.escsa.pl/">ESC S.A.</a>. Projekt i wykonanie: <a href="http://www.escsa.pl/">ESC S.A.</a> i Kamil Sijko.
+				</span>
+			</p>
+			<p id="Logotypes" class="c"></p>
+		</div>
+	</body>
+</html>

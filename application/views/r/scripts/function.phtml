@@ -1,0 +1,7 @@
+<?php echo $this->partial('load.phtml',array('function'=>$this->function)); ?>
+<?php // tu jest dostępny obiekt analysis_data ?>
+<?php foreach($this->function->getFiles() as $file):?>
+source("../../models/r_scripts/<?php echo $file;?>")
+<?php endforeach;?>
+
+<?php echo $this->partial($this->function->getViewScript(),array('function'=>$this->function,'webir_settings'=>$this->webir_settings));?>

@@ -1,0 +1,9 @@
+<div id="dataset">
+	<form id="dataset_form" enctype="multipart/form-data" method="POST" action="/dataset/new">
+		<input type="hidden" value="" name="">
+		<p><label>Nazwa:</label><input type="text" name="name" value="<?php echo $this->name;?>"></input></p>
+		<p><label>Plik:</label><input type="file" name="dataset"></input></p>
+		<p><label>Kodowanie:></label><input type="text" name="fileEncoding" value="cp1250"></input></p>
+		<p><input type="submit" value="Dodaj"></input></p>
+	</form>
+</div>

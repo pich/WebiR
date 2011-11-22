@@ -1,0 +1,160 @@
+body {
+	background: #fff top left repeat-x url('../img/page-background-top.png');
+}
+
+body, input, textarea, select, option, optgroup, button {
+	font-family: font-family: Lucida Grande, Lucida Sans Unicode, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+h1,h2,h3,h4,h5,caption {
+	/* top & bottom margin based on font size */
+	margin:0.5em 0;
+}
+
+
+p {
+	margin: 1em 0;
+}
+
+h1, h2, h3, h4, caption {
+	font-weight: normal;
+	font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	font-size: 2.25em;
+	margin: 0.5em 0;
+}
+
+h2 {
+	font-size: 1.75em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+a.tooltip {
+	border-bottom:1px dotted #000;
+	cursor:pointer;
+}
+
+.container {
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+	/*background-color: #888;*/
+}
+
+.x-form-item-required label {	color: maroon }
+
+.webir-logo {
+	width: 223px;
+	height: 116px;
+	text-indent: -10000em;
+}	
+.webir-logo img {
+	display: block;
+}
+
+#Top a {
+	color: #006cae;
+}
+#Top a:hover {
+	text-decoration: underline;
+}
+	
+#Top {
+	color: #006cae;
+	font-size: 16px;
+	padding-top: 24px;
+	position: relative;
+}
+
+#Top > p {
+	margin: 0em;
+	font-size: 0.75em;
+}
+
+#Top > h1 {
+	float: left;
+	margin: 0;
+}
+
+#Top > h1 > img { float: left; }
+
+#Top > h2 {
+	font-size: 2em;
+	margin-bottom: 0;
+	color: #006cae;
+}
+
+#Top > h3 {
+	font-size: 1.2em;
+	color: #fff;
+	text-shadow: 1px 1px #549ae3;
+}
+
+#Top > .nav {
+	position: absolute;
+	right: 0;
+	margin: 0;
+	top: 4px;
+}
+
+#Top > .nav > li,
+#Top > .nav > li:before {
+	padding-right: 0.5em;
+}
+
+#Top > .nav > li {
+	display: block;
+	float: left;
+}
+
+#Top > .nav > li:before {
+	content: '•';
+}
+
+#Top > .nav > li:first-child:before {
+	padding-right: 0;
+	content: ''
+}
+#Top > .nav > li > a {
+}
+
+#Main {
+	min-height: 376px;
+}
+
+#Footer {
+	color: #666;
+}
+
+#Footer #Logotypes img {
+	margin: 0 0.5em;
+}
+
+#Footer a {
+	text-decoration: underline;
+}
+
+.shadow {
+	-moz-box-shadow: 3px 3px 16px #666;
+	-webkit-box-shadow: 3px 3px 16px #666;
+	box-shadow: 3px 3px 16px #666;
+}
+
+abbr, acronym {
+	cursor: default;
+}
+
+#tourvideo {
+	 margin: auto;
+	 width: 480px;
+	 height: 385px;
+}
+.featureslist {
+	width: 420px;
+}

@@ -1,0 +1,4 @@
+<?php echo $this->partial('load.phtml',array('data_set'=>$this->task->data_set)); ?>
+<?php // tu jest dostępny obiekt analysis_data ?>
+source("../../models/r_scripts/basic.R")
+<?php echo $this->partial($this->task->getResultType() . '.phtml',array('task'=>$this->task,'webir_settings'=>Zend_Registry::get('webir'))); ?>

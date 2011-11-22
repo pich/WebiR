@@ -1,0 +1,17 @@
+<?php 
+if($this->function->getVariables()->get(0)->type == App_R_DataSet_Column::TYPE_FACTOR) {
+	$group = $this->function->getVariables()->get(0); // group
+	$response = $this->function->getVariables()->get(1); // response 
+	$etGroup = $this->function->getParam('etyx');
+	$etResponse = $this->function->getParam('etyy');
+} else {
+	$group = $this->function->getVariables()->get(1); // group
+	$response = $this->function->getVariables()->get(0);
+	$etGroup = $this->function->getParam('etyy');
+	$etResponse = $this->function->getParam('etyx');
+}
+?>
+srednie <- licz.srednie(analysis_data$<?php echo $group->index;?>,analysis_data$<?php echo $response->index?>)
+slupkowy.srednie(srednie, etgroup="<?php echo $etGroup;?>",
+									etresponse="<?php echo $etResponse;?>", wielkosc=<?php echo $this->function->getParam('size');?>,
+									dpi=<?php echo $this->function->getParam('dpi');?>, nazwa="<?php echo $this->function->getParam('chartPrefix');?>.png")

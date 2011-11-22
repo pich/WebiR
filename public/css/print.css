@@ -1,0 +1,36 @@
+body {
+	font-size: 12pt;
+	background: #fff;
+}
+.clearflow {
+	overflow: visible;
+}
+.main > .nav {
+	display: none;
+}
+.main > h2, .main > p {
+	display: none;
+}
+#Top { display: none; }
+#Footer { display: none; }
+#Main {
+	min-height: 0; border: 0;
+	-moz-border-radius : 0;
+	width: auto;
+}
+
+.main .chart-container {
+	height: auto;
+	overflow: visible;
+}
+.main .chart-container .chart {
+	display: inline;
+	float: none;
+}
+
+.main .result-show-more {
+	display: none;
+}
+.main .result-more {
+	display: block;
+}

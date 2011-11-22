@@ -1,0 +1,46 @@
+<?php echo $this->partial('partials/subpage-navigation-main.phtml', array('userProcessCount' => $this->userProcessCount, 'active' => 'analysis-new')); ?>
+<?php echo $this->partial('partials/subpage-analysis-steps.phtml', array('step' => 1)); ?>
+
+<h1>Nowa analiza danych</h1>
+<p>Wybierz proszę, jedną z dwóch poniższych możliwości:</p>
+<!-- 
+<div class="analysis-new">
+	div>
+ -->
+
+<div class="analysis-new clearflow">
+	<div class="left">
+		<div class="header">
+			<h2>1. Wbudowany zestaw danych</h2>
+			<?php if($this->data_set != false):?>
+			<h3><?php echo $this->data_set->name;?></h3>
+			<?php else:?>
+			<h3>Niestety, brak domyślnego zestawu danych.</h3>
+			<?php endif;?>
+		</div>
+		<div class="data-simple-grid">
+		<?php if ($this->data_set != false):?>
+			<a class="analysis-button button-big shadow" href="<?php echo $this->url(array(), 'analysis-choose-variables'); ?>">
+				<span class="head">Wybieram ten zestaw danych</span>
+				<span class="main">Dalej ➔</span>
+			</a>
+			<a class="analysis-button button-small shadow" href="<?php echo $this->url(array(), 'analysis-advance'); ?>">
+				<span class="head">Wybieram ten zestaw<br/>w trybie zaawansowanym ➔</span>
+			</a>
+		<?php else:?>
+			<p>Aby dokonać analizy skorzystaj ze swoich zestawów danych.</p>
+		<?php endif;?>
+		</div>
+		<p>Poznaj wyniki „Ogólnopolskiego badania sytuacji, potrzeb i możliwości osób niepełnosprawnych”, realizowanego przez Państwowy Fundusz Rehabilitacji Osób Niepełnosprawnych oraz Szkołę Wyższą Psychologii Społecznej.</p>
+		<p>Dowiedz się m.in. o tym na jakie dolegliwości cierpią Polacy, jakie wsparcie otrzymują oraz jakie są tego skutki.</p>
+	</div>
+	<div class="right">
+		<div class="header">
+			<h2>2. Mam swoje dane do analizy</h2>
+			<h3>Wczytaj swój własny, przygotowany zestaw danych<br/>lub wybierz jeden z poprzednich</h3>
+		</div>
+		<div id="DataSimpleGrid" class="data-simple-grid"></div>
+		<p>Wczytaj lub wybierz jeden z poprzednio wgranych własnych zestawów danych w formacie <abbr title="ang. Comma Separated Values">CSV</abbr> (wartości rozdzielone przecinkiem) i przeprowadź profesjonalne analizy statystyczne w prosty i przystępny sposób.</p>
+		<p>Oblicz statystyki, poziomy istotności, moce obserwowanych efektów, narysuj wykresy — wszystko to w kilku prostych krokach.</p>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+<?php 
+$info = $this->function->getInfo();
+if($info->variables[0]['type'] == App_R_DataSet_Column::TYPE_FACTOR) {
+	$group = $info->variables[0]; // group
+	$response = $info->variables[1]; // response
+	$addEmpty = "FALSE"; 
+} else {
+	$group = $info->variables[1]; // group
+	$response = $info->variables[0];
+	$addEmpty = "TRUE";
+}
+?>
+
+srednie <- analiza_srednich(analysis_data$<?php echo $group['index']?>,analysis_data$<?php echo $response['index']?>)
+skrzynki(analysis_data$<?php echo $response['index']?>,analysis_data$<?php echo $group['index']?>,etx="<?php echo $response['label']?>",ety="<?php echo $group['label']?>")
+slupkowy.srednie(srednie,"<?php echo $group['label']?>","<?php echo $response['label']?>",emptyLegend=<?php echo $addEmpty;?>)

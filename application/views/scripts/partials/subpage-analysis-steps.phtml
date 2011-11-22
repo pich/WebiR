@@ -1,0 +1,4 @@
+<ul class="subnav">
+	<li><a <?php echo $this->step == 1 ? 'class="active"' : '' ?> href="<?php echo $this->url(array(),'analysis-new');?>" title="Krok 1: wybór zestawu danych<?php echo ($this->step == 1 ? '. Jest to obecny krok.' : '') ?>"><span class="circle">1</span>Wybór zestawu danych</a></li>
+	<li><a <?php echo $this->step == 3 ? 'class="active"' : '' ?> href="<?php echo $this->url(array(),'analysis-choose-variables');?>" title="Krok 2: wybór zmiennych<?php echo ($this->step == 3 ? '. Jest to obecny krok.' : '') ?>"><span class="circle">2</span>Wybór zmiennych</a></li>
+</ul>

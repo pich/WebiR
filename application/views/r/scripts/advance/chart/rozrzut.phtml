@@ -1,0 +1,8 @@
+<?php $info = $this->function->getInfo();?>
+rozrzutu_lr(analysis_data$<?php echo $info->variables[0]['index'];?>,analysis_data$<?php echo $info->variables[1]['index'];?>,
+						etx="<?php echo $info->params['etyx'];?>",ety="<?php echo $info->params['etyy'];?>",
+						wygladzanie=<?php echo $this->function->getParam('span');?>, szumx=<?php echo $this->function->getParam('jitter_x');?>, 
+						szumy=<?php echo $this->function->getParam('jitter_y');?>,wielkosc=<?php echo $this->function->getParam('size');?>
+						,dpi=<?php echo $this->function->getParam('dpi');?>, nazwa="<?php echo $this->function->getParam('chartPrefix');?>.png",
+						elipsy=<?php echo $this->function->getParam('ellipse');?>,
+						kolor=palette()[c(<?php echo $this->function->getParam('color_1');?>,<?php echo $this->function->getParam('color_2');?>)])

@@ -1,0 +1,27 @@
+
+<?php echo $this->partial('r_results/advance/'.$this->resultData->test.'.phtml',
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables));?>
+<?php echo $this->partial('r_results/basic/chart.phtml',
+		array('resultData' => $this->resultData, 'analysis_id' => $this->analysis_id,'variables'=>$this->variables));?>
+<?php if (isset($this->resultData->test)):?>
+<?php if ($this->resultData->test == 'tstudent'): ?>
+<h2>Test t-Studenta</h2>
+<p class="info">Test t pozwala nam porównać średnie w 2 grupach. Jako wynik otrzymamy wartość t, stopnie swobody oraz poziom istotności. Wygląda to np. tak: t(198) = 10,16; p&lt;0,001 Zasadniczo interesuje nas głównie wartość p. Jeśli jest mniejsza niż 0,05 przyjmujemy, iż średnie różnią się w sposób istotny statystycznie. Jeśli otrzymalibyśmy taki wynik dla przykładu przytoczonego powyżej, oznaczałoby to, iż nasz rezultat jest nieprzypadkową zależnością.</p>
+<p>Test t jest testem parametrycznym – oznacza to, iż dane muszą spełniać określone warunki, by wynik był rzetelny. Np. obie grupy powinny mieć normalny rozkład analizowanej zmiennej. Czasem nasze dane nie spełniają tych kryteriów. Wtedy wybieramy testy nieparametryczne. W webiR jest to test Wilcoxona.</p>
+<?php elseif ($this->resultData->test == 'wilcoxon'): ?>
+<h2>Test Wilcoxona</h2>
+<p class="info">Podobnie jak test t porównuje dwie średnie. Rozkład wyników w obu porównywanych zbiorach nie musi być zgodny z rozkładem normalnym, gdyż jest to test nieparametryczny.  Test ten porównuje pary zmiennych, zatem wymagane jest by w obu zbiorach danych było tyle samo obserwacji. Najczęściej używamy go w tedy, gdy mamy do czynienia z powtarzanym pomiarem. Załóżmy, że badaliśmy na początku stycznia grupę 30 dzieci. Zmierzyliśmy ich wzrost. Pod koniec miesiąca  chcemy ponownie dokonać pomiaru i sprawdzić czy urosły w tym czasie. Mamy do czynienia z parami obserwacji pochodzącymi od tych samych osób – są to tak zwane próby zależne. Wynik testu interpretujemy analogicznie do wyniku testu t, z tą tylko różnicą, że zamiast t otrzymamy literę w :-)</p>
+<?php elseif ($this->resultData->test == 'kraskal'): ?>
+<h2>Test Kruskalla-Wallisa</h2>
+<p class="info">Jest to nieparametryczny odpowiednik ANOVy. Również służy do porównywania dowolnej liczby średnich.</p>
+<?php elseif ($this->resultData->test == 'anova'): ?>
+<h2>ANOVA</h2>
+<p class="info">O ile Test t oraz test Wilcoxona pozwalają nam na porównanie 2 średnich, w przypadku ANOVy ograniczenie to przestaje istnieć. Pozwala ona porównać dowolną liczbę średnich. Analiza ta bierze pod uwagę rozproszenie wyników wokół średniej (wariancję) i jest nieco bardziej złożona niż wcześniejsze. Również kryteria które powinny spełnić nasze dane, by wynik był  rzetelny są ostrzejsze. Poza normalnością rozkładu porównywanej zmiennej, ważne jest również, by w każdej z grup liczba obserwacji była równa. Oraz by rozproszenie wyników wokół średniej nie różniło się zbytnio (aby wariancje były jednorodne). Nie zawsze udaje się spełnić te kryteria – wtedy korzystamy z nieparametrycznego odpowiednika ANOVy – testu Kruskalla-Wallisa.</p>
+<?php else :?>
+<h2>Nieznany test (<?php echo $this->resultData->test ?>)</h2>
+<p class="info">Nieznanany test oznacza najprawdopodobniej błąd w oprogramowaniu WebiRa. Prosimy o kontakt!</p>
+<?php endif ?>
+<?php else: ?>
+<h2>Nieznany test (nieistniejący)</h2>
+<p class="info">Nieznanany test oznacza najprawdopodobniej błąd w oprogramowaniu WebiRa. Prosimy o kontakt!</p>
+<?php endif?>

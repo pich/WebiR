@@ -1,0 +1,72 @@
+<?php $f = new Webir_Filter_ExpToString();
+		$test['name'] = 'Kruskal-Wallis';$test['url'] = "http://pl.wikipedia.org/wiki/Test_Kruskala-Wallisa";
+		$pVal = $this->resultData->statistics[3][1];
+		$apa = sprintf('χ²(%d, N=%d)=%.2f, p %s',$this->resultData->statistics[2][1],$this->resultData->statistics[4][1],round($f->filter($this->resultData->statistics[1][1]),2),App_Helper::getPValuLevel($f->filter($pVal)));
+
+	if(in_array($this->variables[0]['type'],array('integer','numeric'))) {
+		$var_1 = $this->variables[0];
+		$var_2 = $this->variables[1];
+	} else {
+		$var_1 = $this->variables[1];
+		$var_2 = $this->variables[1];
+	}
+?>
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Wynik analizy</caption>
+<tr>
+	<td>
+		Testy statystyczne wskazują na <?php echo bccomp($f->filter($pVal), '0.05') < 0 ? 'istotne różnice ' : 'brak istotnych różnic ';?> pomiędzy grupami. <a class="result-show-more" href="#">Dowiedz się więcej...</a>
+	</td>
+</tr>
+</table>
+<div class="result-more">
+<table class="analysis-result" cellspacing="0" cellpadding="0">
+<caption>Informacje szczegółowe</caption>
+<tr class="col2">
+	<th class="name"><b>Wykonany test:</b></th>
+	<td>
+		<?php if(isset($test['url'])):?>
+		<a href="<?php echo $test['url'];?>" class="external" rel="nofollow"><?php echo $test['name'];?></a>
+		<?php else:?>
+		<?php echo $test['name'];?>
+		<?php endif;?>
+	</td>
+</tr>
+<tr class="col2">
+	<th class="name"><b>Zapis APA:</b></th>
+	<td><?php echo $apa;?></td>
+</tr>
+<?php if(isset($this->resultData->srednie)):?>
+<tr class="col2">
+	<th class="name"><b>Średnie:</b></th>
+	<td>
+		<table cellspacing="0" cellpadding="0" class="analysis-result-lvl2">
+			<tr>
+				<th class="c">Poziom</th>
+				<th class="c">Średnia</th>
+			</tr>
+		<?php $v = new Zend_Validate_Alpha();?>
+		<?php foreach($this->resultData->srednie as $key=>$row):?>
+			<tr>
+				<td><?php echo $row[0];?></td>
+				<td><?php echo $v->isValid($row[1]) ? $row[1] : round($f->filter($row[1]),2);?></td>
+			</tr>
+		<?php endforeach;?>
+		</table>
+	</td>
+</tr>
+<?php endif;?>
+
+<?php if(isset($this->resultData->test)):?>
+<tr class="col2">
+	<th class="name"><b>Pozostałe:</b></th>
+	<td class="l">
+		<p>W związku z brakiem normalności rozkładu zmiennej <em><?php echo $var_1['label'];?></em> zastosowano test Kruskalla-Wallisa.</p>
+	</td>
+</tr>
+<?php endif;?>
+</table>
+
+
+
+</div>

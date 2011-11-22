@@ -1,0 +1,9 @@
+<?php 
+	$vars = array();
+	foreach($this->function->getVariables() as $variable) {
+		$vars[] = $variable->index;
+	}
+?>
+lm(<?php echo array_shift($vars);?>~<?php echo implode('+',$vars);?>,data=analysis_data) -> model
+sink("result.txt")
+summary(model)

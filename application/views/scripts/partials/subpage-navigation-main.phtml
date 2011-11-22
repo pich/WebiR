@@ -1,0 +1,7 @@
+<ul class="nav">
+	<li><a <?php echo $this->active == 'analysis-new' ? 'class="active"' : '' ?> href="<?php echo $this->url(array(),'analysis-new'); ?>">Nowa analiza</a></li>
+	<li><a <?php echo $this->active == 'analysis' ? 'class="active"' : '' ?> href="<?php echo $this->url(array(),'analysis'); ?>">Wyniki analiz <?php echo ($this->userProcessCount > 0 ? '(' . $this->userProcessCount . ')' : '') ?></a></li>
+<!-- <li><a <?php echo $this->active == 'account' ? 'class="active"' : '' ?> href="<?php echo $this->url(array(),'account'); ?>">Ustawienia</a></li> -->
+	<li><a <?php echo $this->active == 'dataset' ? 'class="active"' : '' ?> href="<?php echo $this->url(array(),'dataset'); ?>">Twoje dane</a></li>
+	<li class="last"><a href="<?php echo $this->url(array(),'signout'); ?>">Wyloguj się</a></li>
+</ul>
